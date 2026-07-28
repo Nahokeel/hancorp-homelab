@@ -23,7 +23,7 @@ An isolated enterprise lab environment designed to emulate an Active Directory d
 
 ---
 
-## Write-Ups & Documentation
+## Documentation
 
-* [Network Topology & VM Setup](docs/network-topology.md)
+* [Network Topology & VM Setup](docs/setup.md)
 * [Attack Simulation & PCAP Analysis](docs/attack-killchain.md)
