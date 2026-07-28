@@ -19,7 +19,7 @@
 | **`HANCORP-DC01`** | Active Directory DC (Windows Server 2022) | `192.168.50.10` | `255.255.255.0` | 2 vCPU / 4 GB | Active Directory, DNS, Sysmon, Splunk Universal Forwarder |
 | **`HANCORP-PC01`** | Victim Endpoint (Windows 10 Pro) | `192.168.50.20` | `255.255.255.0` | 2 vCPU / 4 GB | Sysmon, Splunk Universal Forwarder |
 | **`HANCORP-KALI`** | Attacker Machine (Kali Linux) | `192.168.50.100` | `255.255.255.0` | 2 vCPU / 2 GB | Nmap, Metasploit, Hydra, Wireshark |
-| **`HANCORP-SIEM`** | Central SIEM (Docker / Host PC) | `192.168.50.5` | `255.255.255.0` | Host Shared | Splunk Enterprise (`8000/TCP`, `9997/TCP`) |
+| **`HANCORP-SIEM`** | Central SIEM (Docker / Host PC) | `192.168.50.1` | `255.255.255.0` | Host Shared | Splunk Enterprise (`8000/TCP`, `9997/TCP`) |
 
 ---
 
@@ -33,32 +33,7 @@ To prevent attack simulations (e.g., automated scanning or exploits) from reachi
 
 ---
 
-## 4. Verification & Proof of Setup
-
-### Screenshot 1: VirtualBox NAT Network Configuration
-
-<p align="center">
-  <img src="images/setup-ss-1.png" alt="VirtualBox NAT Network Setup" width="700">
-</p>
-
-### Screenshot 2: VirtualBox Manager Machine List
-*Shows all active virtual machines (`HANCORP-DC01`, `HANCORP-PC01`, `HANCORP-KALI`) running and attached to the NAT network.*
-
-![VirtualBox VM Inventory](../assets/screenshots/vbox-vm-list.png)
-
-### Screenshot 3: Active Directory Domain Controller Verification
-*Shows the Active Directory Users and Computers (ADUC) dashboard on `HANCORP-DC01` demonstrating `hancorp.local` domain creation.*
-
-![Active Directory Domain Controller](../assets/screenshots/ad-domain-controller.png)
-
-### Screenshot 4: End-to-End Network Connectivity Test
-*Command output from Kali Linux (`192.168.50.100`) successfully pinging both `HANCORP-DC01` (`192.168.50.10`) and `HANCORP-PC01` (`192.168.50.20`).*
-
-![Network Connectivity Verification](../assets/screenshots/network-ping-test.png)
-
----
-
-## 5. VM ISO & Hardware Provisioning
+## 4. VM ISO & Hardware Provisioning
 
 ### ISO Images Used
 * **Windows Server 2022:** `SERVER_EVAL_x64FRE_en-us.iso` (Standard Desktop Experience)
@@ -81,9 +56,62 @@ To prevent attack simulations (e.g., automated scanning or exploits) from reachi
 * **Disk Size:** 50 GB (Dynamically Allocated VDI)
 * **Network Adapter 1:** NAT Network (`HANCORP-NAT-NET`)
 
-#### 3. `HANCORP-KALI` (Attacker Machine)
+#### 3. `KALI` (Attacker Machine)
 * **OS Type:** Linux / Debian (64-bit)
 * **Base Memory:** 2048 MB (2 GB)
 * **Processors:** 2 vCPUs
 * **Disk Size:** 30 GB (Dynamically Allocated VDI)
 * **Network Adapter 1:** NAT Network (`HANCORP-NAT-NET`)
+
+---
+
+## 5. Splunk Configuration (SIEM Stack)
+
+### Container Deployment Specs (`docker-compose.yml`)
+* **Container Name:** `hancorp-splunk`
+* **Image:** `splunk/splunk:latest`
+* **Environment Variables:**
+  * `SPLUNK_START_ARGS=--accept-license`
+  * `SPLUNK_PASSWORD=Zahancorpvros793`
+* **Exposed Ports:** 
+  * `8000:8000` (Splunk Web UI)
+  * `9997:9997` (Splunk Enterprise Receiver / Port for Universal Forwarders)
+* **Volumes:** Persistent mounts mapped to `/opt/splunk/etc` and `/opt/splunk/var` to preserve indexer data and configuration files upon restart.
+
+### Data Inputs & Endpoints
+* **Ingestion Receiver:** Port `9997` enabled on Splunk Enterprise.
+* **Universal Forwarder Output:** Points to `192.168.50.1:9997` (Host Gateway).
+* **Target Sourcetypes:**
+  * `XmlWinEventLog:Microsoft-Windows-Sysmon/Operational`
+  * `WinEventLog:Security`
+  * `WinEventLog:System`
+
+---
+
+## 6. Proof of Setup & Verification
+
+### Screenshot 1: NAT Network Configuration
+
+<p align="center">
+  <img src="images/setup-ss-1.png" alt="VirtualBox NAT Network Setup" width="700">
+</p>
+
+### Screenshot 2: Machine List
+
+<p align="center">
+  <img src="images/setup-ss-2.png" alt="VirtualBox Machine List" width="700">
+</p>
+
+### Screenshot 3: Active Directory Domain Controller Verification
+*Shows the Active Directory Users and Computers (ADUC) dashboard on `HANCORP-DC01` demonstrating `hancorp.local` domain creation.*
+
+<p align="center">
+  <img src="images/setup-ss-3.png" alt="Active Directory Domain Controller" width="700">
+</p>
+
+### Screenshot 4: End-to-End Network Connectivity Test
+*Command output from Kali Linux (`192.168.50.100`) successfully pinging both `HANCORP-DC01` (`192.168.50.10`) and `HANCORP-PC01` (`192.168.50.20`).*
+
+<p align="center">
+  <img src="images/setup-ss-4.png" alt="Network Connectivity Verification" width="700">
+</p>
