@@ -102,16 +102,14 @@ To prevent attack simulations (e.g., automated scanning or exploits) from reachi
   <img src="images/setup-ss-2.png" alt="VirtualBox Machine List" width="700">
 </p>
 
-### Screenshot 3: Active Directory Domain Controller Verification
-*Shows the Active Directory Users and Computers (ADUC) dashboard on `HANCORP-DC01` demonstrating `hancorp.local` domain creation.*
+### Screenshot 3: Active Directory Setup
 
 <p align="center">
-  <img src="images/setup-ss-3.png" alt="Active Directory Domain Controller" width="700">
+  <img src="images/setup-ss-3.png" alt="Active Directory Setup" width="700">
 </p>
 
-### Screenshot 4: End-to-End Network Connectivity Test
-*Command output from Kali Linux (`192.168.50.100`) successfully pinging both `HANCORP-DC01` (`192.168.50.10`) and `HANCORP-PC01` (`192.168.50.20`).*
+### Screenshot 4: NAT Network Test
 
 <p align="center">
-  <img src="images/setup-ss-4.png" alt="Network Connectivity Verification" width="700">
+  <img src="images/setup-ss-4.png" alt="NAT Test" width="700">
 </p>
