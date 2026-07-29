@@ -1,16 +1,15 @@
-version: '3.8'
-
 services:
   splunk:
     image: splunk/splunk:latest
     container_name: hancorp-splunk
     environment:
       - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com
       - SPLUNK_PASSWORD=Zahancorpvros793
     ports:
-      - "8000:8000"    # Splunk Web UI
-      - "8089:8089"    # REST API
-      - "9997:9997"    # Splunk Receiver (for Universal Forwarders)
+      - "8000:8000"
+      - "8089:8089"
+      - "9997:9997"
     volumes:
       - splunk-data:/opt/splunk/var
       - splunk-etc:/opt/splunk/etc
