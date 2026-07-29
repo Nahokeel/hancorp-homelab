@@ -88,7 +88,7 @@ To prevent attack simulations (e.g., automated scanning or exploits) from reachi
 
 ---
 
-## 6. Proof of Setup & Verification
+## 6. Documentation
 
 ### Screenshot 1: NAT Network Configuration
 
@@ -112,4 +112,22 @@ To prevent attack simulations (e.g., automated scanning or exploits) from reachi
 
 <p align="center">
   <img src="images/setup-ss-4.png" alt="NAT Test" width="700">
+</p>
+
+### Screenshot 5: Splunk Docker Container Running
+
+<p align="center">
+  <img src="images/setup-ss-5.png" alt="Docker Desktop Splunk Container" width="700">
+</p>
+
+### Screenshot 5.1: Splunk Web Interface Running
+
+<p align="center">
+  <img src="images/setup-ss-5.1.png" alt="Splunk Web Login Page" width="700">
+</p>
+
+### Screenshot 6: Windows Logs ingested in Splunk
+
+<p align="center">
+  <img src="images/setup-ss-6.png" alt="Splunk Logs" width="700">
 </p>
