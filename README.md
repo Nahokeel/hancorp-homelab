@@ -54,7 +54,7 @@ flowchart TD
 
 ---
 
-## Documentation
+## Lab Documentation
 
-* **[Whole VM and Network Setup](docs/setup.md)** — Step-by-step setup of VirtualBox NAT Network, static IPs, Docker deployment, and VM provisioning.
-* **[Attacking and Defending](docs/tba.md)** — Red Team and Blue Team stuff.
+* **[Lab Architecture & VM Setup](docs/setup.md)** 
+* **[Chapter 1: Brute Force Attack](docs/01-brute-force.md)**
