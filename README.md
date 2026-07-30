@@ -57,4 +57,4 @@ flowchart TD
 ## Lab Documentation
 
 * **[Lab Architecture & VM Setup](docs/setup.md)** 
-* **[Chapter 1: Brute Force Attack](docs/01-brute-force.md)**
+* **[Chapter 1: Brute Force Attack](docs/simulation/01-brute-force.md)**
