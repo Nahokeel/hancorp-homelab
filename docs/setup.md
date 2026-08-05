@@ -82,7 +82,7 @@ To prevent attack simulations (e.g., automated scanning or exploits) from reachi
 * **Ingestion Receiver:** Port `9997` enabled on Splunk Enterprise.
 * **Universal Forwarder Output:** Points to `192.168.50.1:9997` (Host Gateway).
 * **Target Sourcetypes:**
-  * `XmlWinEventLog:Microsoft-Windows-Sysmon/Operational`
+  * `WinEventLog:Sysmon`
   * `WinEventLog:Security`
   * `WinEventLog:System`
 
@@ -130,4 +130,16 @@ To prevent attack simulations (e.g., automated scanning or exploits) from reachi
 
 <p align="center">
   <img src="images/setup-ss-6.png" alt="Splunk Logs" width="700">
+</p>
+
+### Screenshot 7: Sysmon Deployment
+
+<p align="center">
+  <img src="images/setup-ss-7.png" alt="Sysmon Deployment" width="700">
+</p>
+
+### Screenshot 8: Sysmon Logs ingested in Splunk
+
+<p align="center">
+  <img src="images/setup-ss-8.png" alt="Sysmon Splunk" width="700">
 </p>
